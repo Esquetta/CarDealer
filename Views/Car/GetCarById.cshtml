@@ -1,0 +1,115 @@
+﻿@model CarDealer.CarDetailListViewModel
+@inject CarDealer.Resources.LocService SharedResource
+@{
+    ViewData["Title"] = "GetCarById";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/components/carousel/">
+</head>
+
+<h3>@Model.CarForDetailDtos.Brand-@Model.CarForDetailDtos.Model</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                @if (@Model.CarForDetailDtos.Photos.Count > 0)
+                {
+                    <ol class="carousel-indicators">
+                        @for (int i = 0; i < @Model.CarForDetailDtos.Photos.Count; i++)
+                        {
+                            <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="active"></li>
+                        }
+                    </ol>
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="@Model.CarForDetailDtos.Photos[0].Url" alt="First slide">
+                        </div>
+                        @for (int i = 1; i < @Model.CarForDetailDtos.Photos.Count; i++)
+                        {
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="@Model.CarForDetailDtos.Photos[i].Url" alt="First slide">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-light table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Car Detail Info</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Brand"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Brand</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Model"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Model</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Age"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Age</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Fuel_Type"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Fuel_Type</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Gearbox"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Gearbox</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Horse_Power"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Horse_Power</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Miles"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Miles</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Color"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Color</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Description"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Description</label></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="CarForDetailDtos.Price"></label></td>
+                        <td><label>@Model.CarForDetailDtos.Price</label></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            @if (Model.CarForDetailDtos.For_Sale == true)
+            {
+                <a class="btn btn-success" asp-controller="Payment" asp-action="BuyCar" asp-route-id="@Model.CarForDetailDtos.Car_id">Buy Now!</a>
+            }
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</div>
+

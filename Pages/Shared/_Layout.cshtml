@@ -1,0 +1,86 @@
+﻿
+@inject CarDealer.Resources.LocService SharedLocalizer
+@{
+    ViewData["Home"] = @SharedLocalizer.GetLocalizedHtmlString("Home");
+    ViewData["Cars"] = @SharedLocalizer.GetLocalizedHtmlString("Cars");
+    ViewData["Privacy"] = @SharedLocalizer.GetLocalizedHtmlString("Privacy");
+    ViewData["Contact"] = @SharedLocalizer.GetLocalizedHtmlString("Contact");
+    ViewData["Turkish"] = @SharedLocalizer.GetLocalizedHtmlString("Turkish");
+    ViewData["English"] = @SharedLocalizer.GetLocalizedHtmlString("English");
+    ViewData["Switch Language"]= @SharedLocalizer.GetLocalizedHtmlString("Switch Language");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarDealer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/components/carousel/">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">CarDealer</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">@ViewData["Home"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">@ViewData["Cars"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">@ViewData["Privacy"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Contact">@ViewData["Contact"]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon"> </span>@ViewData["Switch Language"]</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="?culture=tr-TR" onclick="javascript:window.location.href=window.location.href"><span class="flag-icon flag-icon-tr"> </span>@ViewData["Turkish"]</a>
+                                <a class="dropdown-item" href="?culture=en-US" onclick="javascript:window.location.href=window.location.href"><span class="flag-icon flag-icon-en"> </span>@ViewData["English"]</a>
+                            </div>
+                            
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 container-fluid">
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2021 - CarDealer - <a asp-area="" asp-page="/Privacy">@ViewData["Privacy"]</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

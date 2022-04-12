@@ -1,0 +1,48 @@
+﻿@model CarDealer.Models.RegisterViewModel
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+    <link href="~/lib/bootstrap/log.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+
+    <form class="box" method="post" runat="server" asp-controller="Account" asp-action="Register">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1>Registration</h1>
+        <input placeholder="UserName" asp-for="Username" />
+        <input id="psw" placeholder="Password" asp-for="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+        <input id="samepasswd" placeholder="Confirm Password" asp-for="ConfirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+        <input placeholder="Email" asp-for="Email" />
+
+        <input type="submit" value="Register" />
+        @if (TempData["PasswordsNotMatch"] != null)
+        {
+            <p class="hata">@TempData["PasswordsNotMatch"]</p>
+        }
+        @if (TempData["UserExist"] != null)
+        {
+            <p class="hata">@TempData["UserExist"]</p>
+        }
+        @if (TempData["RoleMessage"] != null)
+        {
+            <p class="hata">@TempData["RoleMessage"]</p>
+        }
+        @await Component.InvokeAsync("RegisterInfo")
+
+    </form>
+    
+</body>
+</html>
+
+

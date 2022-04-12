@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmMail";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@if (TempData["UserNotFound"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">@TempData["UserNotFound"]</h4>
+        <hr>
+    </div>
+
+}
+
+@if (TempData["ConfirmSuccess"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Success!</h4>
+        <p>@TempData["ConfirmSuccess"]</p>
+        <hr>
+    </div>
+}
+@if (TempData["ConfirmFail"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">@TempData["ConfirmFail"]</h4>
+        <hr>
+    </div>
+
+}
+

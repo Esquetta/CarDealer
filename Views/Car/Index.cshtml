@@ -1,0 +1,66 @@
+﻿@model CarDealer.CarsListViewModel
+@inject CarDealer.Resources.LocService SharedLocalizer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["View"]= @SharedLocalizer.GetLocalizedHtmlString("View");
+}
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Card.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/components/carousel/">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+@if (TempData["AccountDeleted"]!=null)
+{
+    <p class="alert alert-danger">@TempData["AccountDeleted"]</p>
+}
+<div class="container">
+
+    <div class="album bg-light">
+        <div class="row">
+
+            <div class="col-md-2">
+
+
+                @await Component.InvokeAsync("CarBrandList", "Car")
+
+
+            </div>
+
+            <div class="col-md-10">
+                <div class="row ">
+                    @foreach (var item in Model.CarForListDtos)
+                    {
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="@item.PhotoUrl" alt="Card image cap">
+                                <div class="card-body">
+                                    <h6>@item.Brand-@item.Model</h6>
+                                    <h6>@item.Description</h6>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-sm btn-outline-secondary" asp-action="GetCarById" asp-route-id="@item.Car_id">@ViewData["View"]</a>
+                                        </div>
+                                        <small class="text-muted">@item.Price$</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<page-list page-size="@Model.PageSize"
+           page-count="@Model.PageCount"
+           page-currentbrand="@Model.CurrentCar"
+           page-currentpage="@Model.CurrentPage" page-Controller="Car"></page-list>
+
+
+

@@ -1,0 +1,50 @@
+﻿@model CarDealer.HomeModel
+@{
+    Layout = "~/Pages/Shared/_Home.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/sidebars.css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Card.css" rel="stylesheet" />
+</head>
+@await Component.InvokeAsync("AdminWelcome")
+<div class="container">
+    <div class="album bg-light">
+        <div class="row">
+            <div class="col-md-2">
+
+                @await Component.InvokeAsync("CarBrandList", "Management/HomePage")
+
+
+            </div>
+
+            <div class="col-md-10">
+                <div class="row ">
+                    @foreach (var item in Model.CarForListDto)
+                    {
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="@item.PhotoUrl" alt="Card image cap">
+                                <div class="card-body">
+                                    <h6>@item.Brand-@item.Model</h6>
+                                    <h6>@item.Description</h6>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-sm btn-outline-secondary" asp-action="GetCarById" asp-route-id="@item.Car_id">View</a>
+                                            <a type="button" class="btn btn-sm btn-outline-secondary btn-outline-primary" asp-action="AddPhotoForCar" asp-route-id="@item.Car_id">AddPhoto Car</a>
+                                            <a type="button" class="btn btn-sm btn-outline-secondary btn-outline-warning" asp-action="Update" asp-route-id="@item.Car_id">Update</a>
+                                            <a type="button" class="btn btn-sm btn-outline-secondary btn-outline-danger" asp-action="Delete" asp-route-id="@item.Car_id">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <page-list page-count="@Model.PageCount" page-size="Model.PageSize" page-currentbrand="@Model.CurrentCar" page-currentpage="@Model.CurrentPage" page-Controller="Management/HomePage"></page-list>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+

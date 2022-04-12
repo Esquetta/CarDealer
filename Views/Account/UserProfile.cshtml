@@ -1,0 +1,85 @@
+﻿@model CarDealer.Models.UserInfoViewModel
+@{
+    ViewData["Title"] = "UserProfile";
+    Layout = "~/Pages/Shared/_Home.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<div class="container">
+    <form>
+        <h3>User Information</h3>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Username</label>
+                <input class="form-control" placeholder="@Model.username" disabled>
+
+            </div>
+            <div class="form-group col-md-4">
+                <label>Email</label>
+                <input class="form-control" value="@Model.Email" disabled>
+            </div>
+        </div>
+    </form>
+    <br />
+    <h5>If you want to change your password.You must enter  current password and new password</h5>
+    <form asp-action="ChangePassword" asp-controller="Account" method="post">
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Email" />
+            <input type="hidden" asp-for="username" />
+            <label asp-for="CurrentPassword"></label>
+            <input class="form-control" asp-for="CurrentPassword" placeholder="Your Current Password" required />
+            <span asp-validation-for="CurrentPassword"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewPassword"></label>
+            <input id="psw" class="form-control" asp-for="NewPassword" placeholder="Your New Password" required />
+            <span asp-validation-for="NewPassword"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmNewPassword"></label>
+            <input id="samepasswd" class="form-control" asp-for="ConfirmNewPassword" placeholder=" Confirm your  new password"  required/>
+            <span asp-validation-for="ConfirmNewPassword"></span>
+        </div>
+        @if (TempData["ResetPasswordSucceed"] == null)
+        {
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="validcheck" class="text-danger">You must entersame password values</p>
+                <p id="chars" class="text-danger">a unique characters</p>
+                <p id="letter" class="text-danger">A <b>lowercase</b> letter</p>
+                <p id="capital" class="text-danger">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="text-danger">A <b>number</b></p>
+                <p id="length" class="text-danger">Minimum <b>8 characters</b></p>
+            </div>
+        }
+
+        <input type="submit" class="btn btn-primary" value="Change Password" />
+        @if (TempData["PasswordNotMatch"] != null)
+        {
+            <h6 class="text-danger">@TempData["PasswordNotMatch"]</h6>
+        }
+        @if (TempData["CurrentPasswordInvlaid"] != null)
+        {
+            <h5 class="text-danger">@TempData["CurrentPasswordInvlaid"]</h5>
+        }
+    </form>
+    <br />
+    <form asp-action="Security" asp-controller="Account" method="post">
+        <input type="hidden" asp-for="Email" />
+        <input type="hidden" asp-for="username" />
+        <label class="form-text">Two Factor Authentication</label>
+        <input type="checkbox" asp-for="IsTwoFactoryEnable" class="form-check" />
+        <br />
+        <input type="submit" class="btn btn btn-primary" value="Save" />
+        @if (TempData["TwoFactorSuccess"] != null)
+        {
+            <h5 class="text-success">@TempData["TwoFactorSuccess"]</h5>
+        }
+    </form>
+
+</div>
+<script src="~/js/Validate.js"></script>

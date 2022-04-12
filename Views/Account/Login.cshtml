@@ -1,0 +1,70 @@
+﻿@model CarDealer.Models.UserLoginViewModel
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/lib/bootstrap/log.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="https://kit.fontawesome.com/549af98552.js" crossorigin="anonymous"></script>
+    <script src="~/js/ShowPassword.js"></script>
+</head>
+<body>
+
+    <form class="box" method="post" runat="server" asp-controller="Account" asp-action="Login">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1>Admin Login</h1>
+        <input placeholder="UserName" asp-for="UserName" />
+
+        <input id="passwd" placeholder="Password" asp-for="Password" /><i class="fad fa-eye"></i>
+
+        <div class="checkbox mb-3">
+            <label class="RememberMe">
+                <input class="custom-checkbox" type="checkbox" asp-for="RememberMe"> Remember me
+            </label>
+        </div>
+        <div class="checkbox mb-3">
+            <label class="RememberMe">
+                <input class="custom-checkbox" type="checkbox" onclick="myFunction()"> Show Password
+            </label>
+        </div>
+
+        <input type="submit" value="Login" />
+        @if (TempData["LoginError"] != null)
+        {
+            <p class="hata">@TempData["LoginError"]</p>
+            <label class="RememberMe">Forgot Your Password?<a asp-action="ForgotPassword" asp-controller="Account">Click Here!</a></label>
+        }
+        @if (TempData["Verification"] != null)
+        {
+            <p class="hata">@TempData["Verification"]</p>
+        }
+        @if (TempData["LoginUserNotFound"] != null)
+        {
+            <p class="hata">@TempData["LoginUserNotFound"]</p>
+            <label class="RememberMe">Forgot Your Password?<a asp-action="ForgotPassword" asp-controller="Account">Click Here!</a></label>
+        }
+        @if (TempData["PasswordChanced"] != null)
+        {
+            <h5 class="basarili">@TempData["PasswordChanced"]</h5>
+        }
+        @if (TempData["Lockout"] != null)
+        {
+            <h5 class="hata">@TempData["Lockout"]</h5>
+        }
+    </form>
+
+
+
+
+
+</body>
+</html>
+

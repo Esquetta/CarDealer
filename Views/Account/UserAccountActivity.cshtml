@@ -1,0 +1,39 @@
+﻿@model CarDealer.Models.ActivityLogViewModel
+@{
+    ViewData["Title"] = "UserAccountActivity";
+    Layout = "~/Pages/Shared/_Home.cshtml";
+}
+
+<head>
+    <link rel="stylesheet"  href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<h1>@Model.ActivityLogs[0].Username's activities</h1>
+
+
+<table class="table table-striped table-light">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Ip Adress</th>
+            <th scope="col">Url</th>
+            <th scope="col">Data</th>
+            <th scope="col">Browser</th>
+            <th scope="col">Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ActivityLogs)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>@item.IpAdress</td>
+                <td>@item.Url</td>
+                <td>@item.Data</td>
+                <td>@item.Browser</td>
+                <td>@item.ActivityTime</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<pager pager-pagecount="@Model.PageCount" pager-controller="Account/UserAccountActivity" pager-currentpage="@Model.CurrentPage" pager-pagesize="@Model.PageSize"></pager>

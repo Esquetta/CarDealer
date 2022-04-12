@@ -1,0 +1,50 @@
+﻿@inject CarDealer.Resources.LocService SharedLocalizer
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Turkey"]= @SharedLocalizer.GetLocalizedHtmlString("Turkey");
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col col-sm-12">
+            <div class="col-md-12">
+                <div class="embed-responsive embed-responsive-21by9">
+                    <iframe class="embed-responsive-item" src="https://maps.google.com/maps?q=%C4%B0stanbul&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+                </div>
+            </div>
+
+            <div class="col-md p-3">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <a class="btn-floating blue accent-1">
+                            <i class="fas fa-map-marker-alt">
+                                <img style="width: 50px" src="https://res.cloudinary.com/db4z2k45t/image/upload/v1634228024/map-marker-512_xbpn2a.png" />
+                            </i>
+                        </a>
+                        <p>@ViewData["Turkey"]/İstanbul</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn-floating blue accent-1">
+                            <i class="fas fa-envelope"></i>
+                            <img style="height: 50px" src="https://res.cloudinary.com/db4z2k45t/image/upload/v1634227924/106-1061217_follow-along-and-learn-call-and-message-icon_rfc9xk.png" />
+                        </a>
+                        <p><a class="d-block" href="mailto:esquetta@gmail.com">esquetta@gmail.com</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn-floating blue accent-1">
+                            <i class="fas fa-phone"></i>
+                            <img style="width: 50px" src="https://res.cloudinary.com/db4z2k45t/image/upload/v1634227976/phone-icon_qsdsxf.png" />
+                        </a>
+                        <p>+90 566 999 1111</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,42 @@
+﻿@model CarDealer.Models.TwoFactorAuthenticationModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/lib/bootstrap/log.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="https://kit.fontawesome.com/549af98552.js" crossorigin="anonymous"></script>
+    <script src="~/js/ShowPassword.js"></script>
+</head>
+<body>
+
+    <form class="box" method="post" runat="server" asp-controller="Account" asp-action="TwoFactorCode">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1>Admin Login</h1>
+        <input placeholder="Code Here" asp-for="AuthenticationCode" />
+        <input type="submit" value="continue" />
+        <label class="RememberMe">Remember this pc</label> <input type="checkbox" asp-for="rememberClient"/>
+        @if (TempData["TwoFactorCodeSend"] !=null)
+        {
+            <h5 class="basarili">@TempData["TwoFactorCodeSend"]</h5>
+        }
+        @if(TempData["WrongFactoreCode"]!=null)
+         {
+          <h5 class="hata">@TempData["WrongFactoreCode"]</h5>
+         }
+    </form>
+
+
+
+
+
+</body>
+</html>
+

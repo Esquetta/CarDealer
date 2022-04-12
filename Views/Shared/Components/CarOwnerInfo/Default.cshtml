@@ -1,0 +1,29 @@
+﻿@model CarDealer.Models.SoldCarOwnerViewModel
+
+<head>
+    <link rel="stylesheet"  href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+</head>
+
+<table class="table table-light table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Phone Number</th>
+            <th>Adress</th>
+            <th>City</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.SoldCarOwner.FirstName</td>
+            <td>@Model.SoldCarOwner.LastName</td>
+            <td>@Model.SoldCarOwner.Phone_Number</td>
+            <td>@Model.SoldCarOwner.Adress</td>
+            <td>@Model.SoldCarOwner.City</td>
+            <td>@Model.SoldCarOwner.Email</td>
+        </tr>
+    </tbody>
+</table>
